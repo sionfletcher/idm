@@ -1,5 +1,7 @@
 # idm
 
+Site to accomodate lecture series at Central Saint Martins 2014
+
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.12.1.
 

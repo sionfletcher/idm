@@ -1,0 +1,32 @@
+<md-dialog flex="80">
+	<md-dialog-content>
+		<form name="new-task" ng-submit="save()">
+			<div layout="row">
+				<div flex>
+					<md-input-container>
+						<label>Title</label>
+						<input ng-model="task.title" type="text" />
+					</md-input-container>
+					<md-input-container>
+						<label>Slides</label>
+						<input ng-model="task.slides" type="url" />
+					</md-input-container>
+					<md-input-container>
+						<label>Deadline</label>
+						<input ng-model="task.deadline" type="date" />
+					</md-input-container>
+				</div>
+				<div flex>
+					<md-checkbox ng-model="task.active" aria-label="Active">Active</md-checkbox>
+					<md-checkbox ng-model="task.complete" aria-label="Active">Complete</md-checkbox>
+				</div>
+			</div>
+			<div layout="column">
+				<textarea rows="20" flex ng-model="task.content"></textarea>
+			</div>
+			<div class="md-actions">
+				<md-button flex type="submit" class="md-raised md-primary">Save</md-button>
+			</div>
+		</form>
+	</md-dialog-content>
+</md-dialog>

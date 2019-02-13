@@ -1,0 +1,38 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>Register</h1>
+	</div>
+</md-toolbar>
+<md-content layout-padding class="container">
+	<form name="form" ng-submit="register()">
+		
+		<md-input-container>
+			<label>Email</label>
+			<input ng-model-options="{updateOn: 'default blur', debounce: {default: 1000, blur: 0}}" required name="email" ng-model="user.email" suffix="arts.ac.uk" type="email">
+			<div ng-messages="form.email.$error" ng-if="form.email.$dirty">
+	        	<div ng-message="required">Need an email..</div>
+	        	<div ng-message="email">That doesn&rsquo;t look like an email</div>
+	        	<div ng-message="suffix">Must be your university email (ends in arts.ac.uk)</div>
+	        </div>
+		</md-input-container>
+		
+		<md-input-container>
+			<label>Password</label>
+			<input ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}" type="password" name="password" ng-model="user.password" required ng-minlength="6"/>
+			<div ng-messages="form.password.$error" ng-if="form.password.$dirty">
+				<div ng-message="required">Need a password</div>
+	        	<div ng-message="minlength">Too short! Keep going... (6 characters please)</div>
+	        </div>
+		</md-input-container>
+
+		<md-input-container>
+			<label>Confirm Password</label>
+			<input type="password" ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}" ng-model="user.confirm" name="confirm" compare-to="user.password" required/>
+			<div ng-messages="form.confirm.$error" ng-if="form.confirm.$dirty">
+				<div ng-message="compareTo">Passwords don&rsquo;t match. Try again.</div>
+			</div>
+		</md-input-container>
+		
+		<md-button class="md-raised md-primary" type="submit">Register</md-button>
+	</form>
+</md-content>

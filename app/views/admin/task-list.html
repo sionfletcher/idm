@@ -1,0 +1,31 @@
+<md-data-table-container>
+	<table md-data-table>
+		<thead>
+			<tr>
+				<th name="Task"></th>
+				<th name="Deadline"></th>
+				<th name="Submissions"></th>
+				<th name="Active"></th>
+				<th name="Complete"></th>
+				<th name="Edit"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in tasks">
+				<td>{{task.title}}</td>
+				<td>{{task.deadline | date}}</td>
+				<td><task-submission-count task="task"></task-submission-count></td>
+				<td><md-icon ng-show="task.active">check</md-icon></td>
+				<td><md-icon ng-show="task.complete">check</md-icon></td>
+				<td><edit-task task="task" cohort="cohort" label="Edit"></edit-task></td>
+			</tr>
+		</tbody>
+	</table>
+</md-data-table-container>
+
+<md-divider></md-divider>
+<div layout="row">
+	<md-button ng-click="newTask()" class="md-raised">
+		<md-icon>add</md-icon>
+	</md-button>
+</div>

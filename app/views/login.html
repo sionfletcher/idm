@@ -1,0 +1,32 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>Login</h1>
+	</div>
+</md-toolbar>
+<md-content layout-padding class="container">
+	<p class="md-body-1">Login to your Computational Thinking account. <a ui-sref="register">Register an account</a> first if you don&rsquo;t have one. If you&rsquo;re having issues with your account, don&rsquo;t leave it! Email me at <a href="mailto:s.fletcher@arts.ac.uk">s.fletcher@arts.ac.uk</a> or come visit me in J206 on Tuesdays.</p>
+	<form ng-submit="logIn()" name="form">
+		<md-input-container>
+			<label>Email</label>
+			<input ng-model-options="{updateOn: 'default blur', debounce: {default: 1000, blur: 0}}" type="email" ng-model="user.email" name="email" required suffix="arts.ac.uk"/>
+			<div ng-if="form.email.$dirty" ng-messages="form.email.$error">
+				<div ng-message="required">Please enter your email...</div>
+				<div ng-message="email">Doesn&rsquo;t look like an email</div>
+				<div ng-message="suffix">Should be your university email (ends in arts.ac.uk)</div>
+			</div>
+		</md-input-container>
+		<md-input-container>
+			<label>Password</label>
+			<input type="password" name="password" ng-model="user.password" required />
+			<div ng-if="form.password.$dirty" ng-messages="form.email.$error">
+				<div ng-message="required">Please enter your password</div>
+			</div>
+		</md-input-container>
+		<div ng-show="form.$submitted" ng-messages="form.$error">
+			<div>
+				<p class="md-caption md-warn" ng-message="invalidLoginParamaters">Invalid login details. If you&rsquo;re having difficulty get in touch <a href="mailto:s.fletcher@arts.ac.uk">s.fletcher@arts.ac.uk</a></p>
+			</div>
+		</div>
+		<md-button type="submit" class="md-raised md-primary">Login</md-button>
+	</form>
+</md-content>

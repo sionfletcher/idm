@@ -1,0 +1,29 @@
+<div ng-show="students.length === 0" layout-padding>
+	<md-progress-linear md-mode="indeterminate"></md-progress-linear>
+</div>
+
+<md-input-container>
+	<label>
+		<md-icon>search</md-icon>
+	</label>
+	<input type="text" ng-model="search.student.email"/>
+</md-input-container>
+
+<md-data-table-container ng-show="students.length > 0">
+	<table md-data-table>
+		<thead>
+			<tr>
+				<th name="email"></th>
+				<th name="mark"></th>
+				<th name="grade"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="student in students | filter:search">
+				<td>{{student.student.email}}</td>
+				<td>{{student.mark}}</td>
+				<td>{{grade(student.mark)}}</td>
+			</tr>
+		</tbody>
+	</table>
+</md-data-table-container>

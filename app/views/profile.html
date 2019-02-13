@@ -1,0 +1,7 @@
+<md-content layout-padding>
+	<h1 class="md-display-1">{{user.email}}</h1>
+	<h2 class="md-subhead">Submissions</h2>
+	<ol>
+		<li ng-repeat="submission in submissions"><a target="_blank" href="{{submission.url}}">{{submission.url}}</li>
+	</ol>
+</md-content>

@@ -1,0 +1,59 @@
+<md-content layout-padding>
+	<md-select ng-model="task" placeholder="Select Task">
+		<md-option ng-value="task" ng-selected="$index === 0" ng-repeat="task in tasks">
+			{{task.title}}
+		</md-option>
+	</md-select>
+	
+	<h4 class="md-caption">Marked / Submitted</h4>
+	<p class="md-body-1"><task-submission-count task="task"></task-submission-count></p>
+
+	<h4 class="md-caption">Highlights</h4>
+	<ul class="md-body-1">
+		<li ng-repeat="submission in submissions | filter:{highlight: true}">
+			<strong><a ng-href="{{submission.url}}">{{submission.url}}</a></strong> - {{submission.user.email}}
+		</li>
+	</ul>
+
+	<div>
+		<h4 class="md-caption"><submission-slideshow submissions="submissions"></submission-slideshow></h4>
+	</div>
+
+	<md-input-container>
+		<label><md-icon>search</md-icon></label>
+		<input type="text" ng-model="search.user.email" />
+	</md-input-container>
+	<md-data-table-container>
+		<table md-data-table>
+			<thead>
+				<tr>
+					<th></th>
+					<th name="Marked"></th>
+					<th name="Student"></th>
+					<th name="Task"></th>
+					<th name="Submission"></th>
+					<th name="Resubmission"></th>
+					<th name="Mark"></th>
+					<th name="Highlight"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="submission in submissions | filter:search">
+					<td>{{$index + 1}}</td>
+					<td><md-icon ng-show="submission.mark.id">check</md-icon></td>
+					<td><a href="mailto:{{submission.user.email}}">{{submission.user.email}}</a></td>
+					<td>{{submission.task.title}}</td>
+					<td><a target="_blank" href="{{submission.url}}">{{submission.url}}</a></td>
+					<td><md-icon ng-if="submission.resubmission">check</md-icon></td>
+					<td>
+						<mark-submission submission="submission"></mark-submission>
+					</td>
+					<td>
+						<highlight-submission submission="submission"></highlight-submission>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</md-data-table-container>
+	<submission-timeline submissions="submissions"></submission-timeline>
+</md-content>

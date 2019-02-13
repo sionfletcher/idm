@@ -1,0 +1,5 @@
+<div id="banner">
+	<div ng-class="{submitted: submitted(student)}" ui-sref="home.profile({user: student.id})" ng-style="style(student)" ng-repeat="student in students">
+		<span>{{name(student)}}</span>
+	</div>
+</div>

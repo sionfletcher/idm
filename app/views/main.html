@@ -1,0 +1,41 @@
+<md-toolbar>
+	<div ng-if="sessionUser" class="md-toolbar-tools">
+		<md-button ng-click="toggleSidebar()" hide-gt-md class="md-icon-button md-button md-default-theme">
+			<md-icon>menu</md-icon>
+		</md-button>
+		<h2 hide-md hide-sm class="md-display-1">Logged in as {{sessionUser.email}}</h2>
+		<span flex></span>
+		<md-button ng-click="logout()">Logout</md-button>
+	</div>
+
+	<div ng-if="!sessionUser" class="md-toolbar-tools">
+		<md-button class="md-icon-button md-button md-default-theme" ui-sref="home">
+			<md-icon>home</md-icon>
+		</md-button>
+		<p>Computational Thinking</p>
+		<span flex></span>
+		<md-button ui-sref="login">Log in</md-button>
+	</div>
+</md-toolbar>
+
+<section layout="row">
+	<md-sidenav ng-if="sessionUser" md-component-id="left" layout-padding md-is-locked-open="$mdMedia('gt-md')" class="md-sidenav-left">
+		<md-content layout="column">
+			<md-button flex ng-click="toggleSidebar()" class="md-warn" hide-gt-md>
+	    		<md-icon>close</md-icon> Close
+			</md-button>
+			<md-button ui-sref="{{page.state}}" ng-class="{'active' : isSelected()}" ng-repeat="page in pages">
+				<div layout="row">
+					<span>{{page.title}}</span>
+					<span flex></span>
+					<md-icon>keyboard_arrow_right</md-icon></div>
+			</md-button>
+		</md-content>
+	</md-sidenav>
+	<ui-view flex layout="column">
+		<md-content layout-padding class="container md-body-1">
+			<h1 class="md-display-1">Computational Thinking</h1>
+			<p>Welcome to Computational Thinking. This is a course for 1st Year BA Graphic Design students by Si&ocirc;n Fletcher. Before you get going, you&rsquo;ll need to <a ui-sref="register">register an account</a> with your university email address. Once you&rsquo;ve done that, <a ui-sref="login">login</a> to your account, and you&rsquo;ll see all the information you need, including your briefs, feedback, program information and useful resrouces!</p>
+		</md-content>
+	</ui-view>
+</section>

@@ -1,0 +1,55 @@
+$desktop: 960px;
+$tablet: 768px;
+$mobile-large: 640px;
+$mobile: 480px;
+$mobile-small: 300px;
+
+.md-toast.md-warn {
+	background:red;
+}
+
+.warning {
+	color:red;
+	font-weight:bold;
+}
+
+.cohort-toolbar {
+	background: #ccc !important;
+}
+
+@media only screen and (min-width: $desktop) {
+	.container {
+		max-width:640px;
+	}
+}
+
+#banner {
+	width: 1216px;
+	margin:0 auto;
+}
+
+#banner > div {
+	box-sizing: border-box;
+	border:1px solid #f6f6f6;
+	float: left;
+	width:64px;
+	height:64px;
+	background-size: contain;
+	background-position:center;
+	background-repeat: no-repeat;
+	padding:2px;
+	cursor:pointer;
+}
+
+#banner > div.submitted span{
+	display:none;
+}
+
+#banner > div:hover {
+	border:2px solid red;
+}
+
+#banner > div > span {
+	font-size:12px;
+	word-wrap: break-word;
+}

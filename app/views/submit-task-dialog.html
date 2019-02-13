@@ -1,0 +1,23 @@
+<md-dialog flex="80" aria-label="Submit Task">
+	<md-dialog-content layout="column">
+		<h1 class="md-headline">Submit <strong>{{task.title}}</strong></h1>
+		<span class="md-subhead">Logged in as {{sessionUser.email}}</span>
+		<ol class="md-body-1">
+			<li>Copy and paste the link to your project in the field below.</li>
+			<li>Check the preview that pops up (click preview if you have popups blocked)</li>
+			<li>Double check it&rsquo;s the correct piece - <em>{{task.title}}</em></li>
+			<li><strong>Submit your own work only!</strong></li>
+			<li>Have a cup of tea ☕</li>
+		</ol>
+		<form name="submitForm" ng-submit="submit()">
+			<md-input-container>
+				<label>Link</label>
+				<input ng-model="data.url" ng-model-options="{updateOn: 'default blur', debounce: {default: 500, blur: 0}}" name="url" type="url" required />
+			</md-input-container>
+		</form>
+		<div class="md-actions" layout="row">
+			<md-button ng-click="preview()" class="md-accent md-raised">Preview</md-button>
+			<md-button ng-click="submit()" ng-disabled="!submitForm.$valid || submitting" class="md-primary md-raised">Submit</md-button>
+		</div>
+	</md-dialog-content>
+</md-dialog>

@@ -1,0 +1,19 @@
+<md-toolbar class="md-whiteframe-z1 site-content-toolbar md-default-theme">
+	<div ng-if="sessionUser" class="md-toolbar-tools">
+		<md-button hide-gt-md class="md-icon-button md-button md-default-theme" ui-sref="home">
+			<md-icon>menu</md-icon>
+		</md-button>
+		<h2 class="md-display-1">Logged in as {{sessionUser.email}}</h2>
+		<span flex></span>
+		<md-button ng-click="logout()">Logout</md-button>
+	</div>
+
+	<div ng-if="!sessionUser" class="md-toolbar-tools">
+		<md-button class="md-icon-button md-button md-default-theme" ui-sref="home">
+			<md-icon>home</md-icon>
+		</md-button>
+		<p>Computational Thinking</p>
+		<span flex></span>
+		<md-button ui-sref="login">Log in</md-button>
+	</div>
+</md-toolbar>

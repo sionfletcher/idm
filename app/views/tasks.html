@@ -1,0 +1,54 @@
+<div layout-padding>
+	<h1 class="md-headline">Your tasks</h1>
+</div>
+<md-data-table-container layout-padding>
+	<table md-data-table>
+		<thead>
+			<tr>
+				<th name="Task"></th>
+				<th name="Submit"></th>
+				<th name="Lecture Slides"></th>
+				<th name="Deadline"></th>
+				<th name="Status"></th>
+				<th name="Submissions"></th>
+				<th name="Mark"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in tasks">
+				<td>
+					<md-button class="md-primary" ng-click="goToTask(task.id)">{{task.title}}</md-button>
+				</td>
+				<td>
+					<submit-task task="task" submitted="taskSubmitted(submission)" resubmit="isResubmit(task)"></submit-task>
+				</td>
+				<td>
+					<a ng-href="{{task.slides}}" target="_blank">Lecture Slides</a>
+				</td>
+				<td>{{task.deadline | date}}</td>
+				<td>
+					<submission-status task="task" submissions="submissions[task.id]"></submission-status>
+				</td>
+				<td>
+					<submission-list submissions="submissions[task.id]"></submission-list>
+				</td>
+				<td>
+					<submission-mark task="task" submissions="submissions[task.id]"></submission-mark>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</md-data-table-container>
+
+<div layout-padding class="container">
+	<div ng-repeat="task in tasks">
+		<h2 class="md-display-1" id="{{task.id}}">{{task.title}}</h2>
+		<p class="warning">Deadline: {{task.deadline | date}} - <submission-status style="display:inline-block" task="task" submissions="submissions[task.id]"></submission-status></p>
+		<submit-task task="task" submitted="taskSubmitted(submission)" resubmit="isResubmit(task)"></submit-task>
+
+		<p ng-if="task.complete">Click below to see everyone's work in a slideshow (allow popups!)</p>
+		<task-slideshow ng-if="task.complete" task="task"></task-slideshow>
+
+		<pagedown-viewer class="md-body-1" content="task.content"></pagedown-viewer>
+	</div>
+</div>
